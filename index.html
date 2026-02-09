@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PhysicsMind — Электр және Магнетизм (9 сынып)</title>
+
+  <!-- FAVICON (RU): положи файл assets/favicon.png -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <style>
+    :root{
+      --bg:#F5F7FB;
+      --card:#FFFFFF;
+      --text:#0F172A;
+      --muted:#64748B;
+
+      --primary:#4F46E5;  /* пастель-күлгін */
+      --primary2:#6366F1;
+      --green:#16A34A;
+      --red:#EF4444;
+
+      --softBlue:#EEF2FF;
+      --softGreen:#ECFDF5;
+      --softRed:#FFF1F2;
+
+      --shadow: 0 14px 35px rgba(15, 23, 42, .08);
+      --r:18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(245,247,251,.85);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(100,116,139,.15);
+    }
+
+    .wrap{max-width:1050px; margin:0 auto; padding:14px;}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      padding:8px 10px; border-radius:999px; background:var(--card); box-shadow: var(--shadow);
+    }
+    .brand img{
+      width:34px; height:34px; border-radius:10px; object-fit:cover;
+      border:1px solid rgba(100,116,139,.18);
+    }
+    .brand b{font-size:14px}
+    .brand span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background:var(--softBlue); color:#1E293B; font-size:12px;
+      border:1px solid rgba(99,102,241,.18);
+    }
+
+    main{padding:16px}
+    .card{
+      background:var(--card);
+      border-radius:var(--r);
+      box-shadow: var(--shadow);
+      border:1px solid rgba(100,116,139,.10);
+      padding:16px;
+      margin:14px 0;
+    }
+
+    .grid{display:grid; gap:12px}
+    @media(min-width:820px){
+      .grid.two{grid-template-columns: 1fr 1fr}
+    }
+
+    h1,h2,h3{margin:0}
+    .muted{color:var(--muted); font-size:12px; line-height:1.4}
+    .title{font-size:18px}
+    .subtitle{margin-top:6px}
+
+    label{font-size:12px; color:var(--muted); display:block; margin-bottom:6px}
+    input, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(100,116,139,.20);
+      outline:none;
+      background:#fff;
+      font-size:14px;
+    }
+    input:focus, select:focus{
+      border-color: rgba(79,70,229,.55);
+      box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+    }
+
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap}
+    button{
+      border:none;
+      border-radius:14px;
+      padding:12px 14px;
+      cursor:pointer;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .btn{background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#fff}
+    .btn.gray{background:#334155; color:#fff}
+    .btn.green{background:linear-gradient(135deg,#16A34A,#22C55E); color:#fff}
+    .btn.ghost{background:transparent; border:1px solid rgba(100,116,139,.25); color:#0F172A}
+
+    .rolebtn{
+      width:100%;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px 14px; border-radius:16px;
+      border:1px solid rgba(100,116,139,.15);
+      background: #fff;
+    }
+    .rolebtn:hover{box-shadow: 0 10px 24px rgba(15,23,42,.08)}
+    .roleleft{display:flex; align-items:center; gap:10px}
+    .icon{
+      width:38px; height:38px; border-radius:14px;
+      display:grid; place-items:center;
+      background: var(--softBlue);
+      border:1px solid rgba(79,70,229,.18);
+      font-weight:900;
+      color:#3730A3;
+    }
+
+    .note{
+      padding:12px; border-radius:14px;
+      background: #fff;
+      border:1px dashed rgba(100,116,139,.30);
+    }
+
+    .hide{display:none}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <!-- LOGO (RU): положи файл assets/logo.png -->
+      <img src="assets/logo.png" alt="Logo" />
+      <div>
+        <b>PhysicsMind</b>
+        <span>Электр & Магнетизм • 9 сынып</span>
+      </div>
+    </div>
+    <span class="pill">🧠 Шектеулі жадты ЖИ • Қате талдау • Қатемен жұмыс</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 1) ROLE SELECT -->
+  <div class="card" id="roleCard">
+    <h2 class="title">Кіру режимін таңда</h2>
+    <p class="muted subtitle">Оқушы тест тапсырады, мұғалім нәтижелерді және қате талдауды көреді.</p>
+
+    <div class="grid two" style="margin-top:12px;">
+      <button class="rolebtn" onclick="setRole('student')">
+        <div class="roleleft">
+          <div class="icon">О</div>
+          <div style="text-align:left">
+            <b>Оқушы кіру</b>
+            <div class="muted">Тест • қате есеп • қатемен жұмыс</div>
+          </div>
+        </div>
+        <span class="muted">→</span>
+      </button>
+
+      <button class="rolebtn" onclick="setRole('teacher')">
+        <div class="roleleft">
+          <div class="icon">М</div>
+          <div style="text-align:left">
+            <b>Мұғалім кіру</b>
+            <div class="muted">Нәтижелер • сұрыптау • аналитика</div>
+          </div>
+        </div>
+        <span class="muted">→</span>
+      </button>
+    </div>
+
+    <div class="note muted" style="margin-top:12px;">
+      Логотипті ауыстыру үшін: <b>assets/logo.png</b> файлын өз логотипіңмен алмастыр.
+    </div>
+  </div>
+
+  <!-- 2) LOGIN -->
+  <div class="card hide" id="loginCard">
+    <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap;">
+      <div>
+        <h2 class="title" id="loginTitle">Кіру</h2>
+        <p class="muted subtitle" id="loginHint">Логин/пароль арқылы кір.</p>
+      </div>
+      <button class="btn ghost" onclick="backToRole()">← Артқа</button>
+    </div>
+
+    <div class="grid two" style="margin-top:10px;">
+      <div>
+        <label>Логин</label>
+        <input id="login" placeholder="мыс: aibek" />
+      </div>
+      <div>
+        <label>Пароль</label>
+        <input id="password" type="password" placeholder="****" />
+      </div>
+    </div>
+
+    <!-- STUDENT ONLY: class -->
+    <div class="grid two" style="margin-top:10px;" id="classWrap">
+      <div>
+        <label>Сынып</label>
+        <select id="classSelect">
+          <option value="9A">9A</option>
+          <option value="9B">9B</option>
+          <option value="9C">9C</option>
+        </select>
+      </div>
+      <div>
+        <label>Ескерту</label>
+        <div class="muted" style="padding:12px;border:1px solid rgba(100,116,139,.18);border-radius:14px;background:#fff;">
+          Қатемен жұмыс өтпейінше нәтижені жіберу де, қайта тапсыру да ашылмайды.
+        </div>
+      </div>
+    </div>
+
+    <div class="btnrow" style="margin-top:12px;">
+      <button class="btn" onclick="loginNow()">Кіру</button>
+      <button class="btn gray" onclick="demo()">Demo режим</button>
+    </div>
+
+    <div class="muted" id="msg" style="margin-top:10px;"></div>
+  </div>
+
+  <!-- 3) PLACEHOLDER NEXT SCREENS -->
+  <div class="card hide" id="studentHome">
+    <h2 class="title">Оқушы панелі (келесі қадам)</h2>
+    <p class="muted subtitle">Мұнда тест, нәтижесі (8/10), қате есеп және “Қатемен жұмыс” болады.</p>
+    <div class="btnrow">
+      <button class="btn green">Тестті бастау (келесі)</button>
+      <button class="btn ghost" onclick="logout()">Шығу</button>
+    </div>
+  </div>
+
+  <div class="card hide" id="teacherHome">
+    <h2 class="title">Мұғалім панелі (келесі қадам)</h2>
+    <p class="muted subtitle">Мұнда барлық оқушы нәтижесі + “Сұрыптау/Аналитика” батырмасы болады.</p>
+    <div class="btnrow">
+      <button class="btn">Нәтижелерді көру (келесі)</button>
+      <button class="btn ghost" onclick="logout()">Шығу</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // API-ды кейін қосамыз
+  // const API_URL = "PASTE_YOUR_APPS_SCRIPT_URL";
+
+  let ROLE = null;
+
+  function setRole(r){
+    ROLE = r;
+    document.getElementById('roleCard').classList.add('hide');
+    document.getElementById('loginCard').classList.remove('hide');
+
+    document.getElementById('msg').textContent = '';
+    document.getElementById('login').value = '';
+    document.getElementById('password').value = '';
+
+    document.getElementById('loginTitle').textContent = (r === 'student') ? 'Оқушы кіру' : 'Мұғалім кіру';
+    document.getElementById('loginHint').textContent = (r === 'student')
+      ? 'Логин/пароль + сынып таңда.'
+      : 'Мұғалім логині/паролі арқылы кір.';
+    document.getElementById('classWrap').style.display = (r === 'student') ? 'grid' : 'none';
+  }
+
+  function backToRole(){
+    ROLE = null;
+    document.getElementById('loginCard').classList.add('hide');
+    document.getElementById('roleCard').classList.remove('hide');
+  }
+
+  function loginNow(){
+    const lg = document.getElementById('login').value.trim();
+    const pw = document.getElementById('password').value.trim();
+    if(!lg || !pw){
+      document.getElementById('msg').textContent = "Логин мен парольді толтыр.";
+      return;
+    }
+
+    // Қазір demo-like: API-сыз экран ауыстырамыз
+    document.getElementById('loginCard').classList.add('hide');
+
+    if(ROLE === 'student'){
+      document.getElementById('studentHome').classList.remove('hide');
+    } else {
+      document.getElementById('teacherHome').classList.remove('hide');
+    }
+  }
+
+  function demo(){
+    document.getElementById('msg').textContent = "Demo: қазір тек дизайн дайын. Келесіде API қосамыз ✅";
+  }
+
+  function logout(){
+    ROLE = null;
+    document.getElementById('studentHome').classList.add('hide');
+    document.getElementById('teacherHome').classList.add('hide');
+    backToRole();
+  }
+</script>
+</body>
+</html>
