@@ -7,71 +7,189 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <style>
     :root{
-      --bg:#F5F7FB; --card:#FFFFFF; --text:#0F172A; --muted:#64748B;
-      --primary:#4F46E5; --primary2:#6366F1; --green:#16A34A; --red:#EF4444;
-      --softBlue:#EEF2FF; --softGreen:#ECFDF5; --softRed:#FFF1F2;
-      --shadow: 0 14px 35px rgba(15, 23, 42, .08);
+      --bg:#F3F7FF;
+      --card:#FFFFFF;
+      --text:#0B1220;
+      --muted:#5B6B84;
+      --blue:#2563EB;
+      --blue2:#3B82F6;
+      --line:rgba(37,99,235,.16);
+      --shadow:0 14px 40px rgba(2, 8, 23, .08);
       --r:18px;
+      --ok:#16A34A;
+      --bad:#EF4444;
+      --softBlue:#EFF6FF;
+      --softOk:#ECFDF5;
+      --softBad:#FFF1F2;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    header{position:sticky;top:0;z-index:10;background:rgba(245,247,251,.85);
-      backdrop-filter:blur(10px);border-bottom:1px solid rgba(100,116,139,.15)}
+    body{
+      margin:0;
+      background:radial-gradient(1200px 600px at 20% 0%, #EAF2FF 0%, var(--bg) 60%) fixed;
+      color:var(--text);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    }
+    header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(243,247,255,.86);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
     .wrap{max-width:1050px;margin:0 auto;padding:14px}
     .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:999px;
-      background:var(--card);box-shadow:var(--shadow)}
-    .brand img{width:34px;height:34px;border-radius:10px;object-fit:cover;
-      border:1px solid rgba(100,116,139,.18)}
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      padding:8px 12px;border-radius:999px;
+      background:var(--card);box-shadow:var(--shadow);
+      border:1px solid rgba(15,23,42,.06);
+    }
+    .brand img{
+      width:34px;height:34px;border-radius:12px;object-fit:cover;
+      border:1px solid rgba(37,99,235,.25);
+      background:#fff;
+    }
     .brand b{font-size:14px}
     .brand span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
-      background:var(--softBlue);color:#1E293B;font-size:12px;border:1px solid rgba(99,102,241,.18)}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:var(--softBlue);
+      border:1px solid rgba(37,99,235,.18);
+      color:#1D2A44;font-size:12px;
+    }
     main{padding:16px}
-    .card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);
-      border:1px solid rgba(100,116,139,.10);padding:16px;margin:14px 0}
+    .card{
+      background:var(--card);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(15,23,42,.06);
+      padding:16px;margin:14px 0;
+    }
     .grid{display:grid;gap:12px}
     @media(min-width:820px){.grid.two{grid-template-columns:1fr 1fr}}
     h2,h3{margin:0}
     .title{font-size:18px}
     .muted{color:var(--muted);font-size:12px;line-height:1.4}
+    .small{font-size:12px;color:var(--muted)}
     label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
-    input,select{width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(100,116,139,.20);
-      outline:none;background:#fff;font-size:14px}
-    input:focus,select:focus{border-color:rgba(79,70,229,.55);box-shadow:0 0 0 4px rgba(79,70,229,.12)}
+    input{
+      width:100%;padding:12px 12px;border-radius:14px;
+      border:1px solid rgba(37,99,235,.22);
+      outline:none;background:#fff;font-size:14px;
+    }
+    input:focus{
+      border-color:rgba(37,99,235,.55);
+      box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    }
     .btnrow{display:flex;gap:10px;flex-wrap:wrap}
-    button{border:none;border-radius:14px;padding:12px 14px;cursor:pointer;font-weight:800;letter-spacing:.2px}
-    .btn{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff}
-    .btn.gray{background:#334155;color:#fff}
-    .btn.green{background:linear-gradient(135deg,#16A34A,#22C55E);color:#fff}
-    .btn.ghost{background:transparent;border:1px solid rgba(100,116,139,.25);color:#0F172A}
-    .rolebtn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;
-      padding:14px;border-radius:16px;border:1px solid rgba(100,116,139,.15);background:#fff}
-    .rolebtn:hover{box-shadow:0 10px 24px rgba(15,23,42,.08)}
+    button{
+      border:none;border-radius:14px;padding:12px 14px;cursor:pointer;
+      font-weight:800;letter-spacing:.2px;
+    }
+    .btn{
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      color:#fff;
+    }
+    .btn.ghost{
+      background:transparent;
+      border:1px solid rgba(37,99,235,.25);
+      color:#0B1220;
+    }
+    .btn.gray{
+      background:#0F172A;color:#fff;
+    }
+    .btn.green{
+      background:linear-gradient(135deg,#16A34A,#22C55E);color:#fff;
+    }
+    .rolebtn{
+      width:100%;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:14px;border-radius:16px;
+      border:1px solid rgba(37,99,235,.18);
+      background:#fff;
+    }
+    .rolebtn:hover{box-shadow:0 10px 28px rgba(2,8,23,.08)}
     .roleleft{display:flex;align-items:center;gap:10px}
-    .icon{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;background:var(--softBlue);
-      border:1px solid rgba(79,70,229,.18);font-weight:900;color:#3730A3}
+    .icon{
+      width:38px;height:38px;border-radius:14px;display:grid;place-items:center;
+      background:var(--softBlue);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;color:#1E3A8A;
+    }
     .hide{display:none}
-    .note{padding:12px;border-radius:14px;background:#fff;border:1px dashed rgba(100,116,139,.30)}
-    .q{padding:12px;border-radius:16px;border:1px solid rgba(100,116,139,.18);background:#fff;margin-top:10px}
+    .note{
+      padding:12px;border-radius:14px;background:#fff;
+      border:1px dashed rgba(37,99,235,.25);
+    }
+    .q{
+      padding:12px;border-radius:16px;
+      border:1px solid rgba(37,99,235,.16);
+      background:#fff;margin-top:10px;
+    }
     .qhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
-    .badge{font-size:11px;padding:6px 10px;border-radius:999px;border:1px solid rgba(100,116,139,.18);background:#F8FAFC;color:#334155}
-    .ok{background:var(--softGreen);border-color:rgba(34,197,94,.25)}
-    .bad{background:var(--softRed);border-color:rgba(239,68,68,.25)}
+    .badge{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(37,99,235,.18);
+      background:#F8FBFF;color:#1D2A44
+    }
+    .ok{background:var(--softOk);border-color:rgba(34,197,94,.25)}
+    .bad{background:var(--softBad);border-color:rgba(239,68,68,.25)}
     .ans{display:grid;gap:8px;margin-top:10px}
-    .opt{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:14px;
-      border:1px solid rgba(100,116,139,.18);cursor:pointer}
+    .opt{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:10px;border-radius:14px;
+      border:1px solid rgba(37,99,235,.14);
+      cursor:pointer;
+      background:#fff;
+    }
     .opt input{width:auto;margin-top:2px}
-    .opt:hover{background:#F8FAFC}
-    .bar{height:10px;background:#E2E8F0;border-radius:999px;overflow:hidden}
-    .bar > div{height:100%;background:linear-gradient(135deg,var(--primary),var(--primary2));width:0%}
+    .opt:hover{background:#F8FBFF}
+    .bar{height:10px;background:#E6EEFF;border-radius:999px;overflow:hidden}
+    .bar > div{
+      height:100%;
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      width:0%;
+    }
     .list{padding-left:16px;margin:8px 0}
     .locked{opacity:.55;pointer-events:none;filter:grayscale(.2)}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;border-bottom:1px solid rgba(100,116,139,.15);text-align:left;font-size:13px}
-    th{color:#334155;background:#F8FAFC}
-    .small{font-size:12px;color:var(--muted)}
+    .chiprow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{
+      font-size:12px;padding:8px 10px;border-radius:999px;
+      background:var(--softBlue);
+      border:1px solid rgba(37,99,235,.18);
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip.active{
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      color:#fff;border-color:transparent;
+    }
+    .cards{
+      display:grid;gap:12px;
+    }
+    @media(min-width:820px){.cards{grid-template-columns:1fr 1fr}}
+    .kcard{
+      border-radius:16px;
+      border:1px solid rgba(37,99,235,.16);
+      background:#fff;
+      padding:14px;
+      box-shadow:0 10px 26px rgba(2,8,23,.06);
+    }
+    .khead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .kname{font-weight:900}
+    .kmeta{font-size:12px;color:var(--muted);margin-top:4px}
+    .kline{height:1px;background:rgba(37,99,235,.12);margin:10px 0}
+    .krow{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{
+      font-size:12px;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(37,99,235,.18);
+      background:#F8FBFF;
+      color:#1D2A44;
+    }
+    .tag.ok{background:var(--softOk);border-color:rgba(34,197,94,.25)}
+    .tag.bad{background:var(--softBad);border-color:rgba(239,68,68,.25)}
+    .danger{color:var(--bad);font-weight:900}
+    .success{color:var(--ok);font-weight:900}
   </style>
 </head>
 <body>
@@ -81,10 +199,10 @@
       <img src="assets/logo.png" alt="Logo" />
       <div>
         <b>PhysicsMind</b>
-        <span>Электр & Магнетизм • 9 сынып</span>
+        <span>Электр & Магнетизм • 9 сынып • Minimal Blue</span>
       </div>
     </div>
-    <span class="pill">🧠 Шектеулі жадты ЖИ • Қате талдау • Қатемен жұмыс</span>
+    <span class="pill">🧠 Шектеулі жад • Қате талдау • Қатемен жұмыс • Рефлексия</span>
   </div>
 </header>
 
@@ -93,31 +211,34 @@
   <!-- ROLE -->
   <div class="card" id="roleCard">
     <h2 class="title">Кіру режимін таңда</h2>
-    <p class="muted">Оқушы тест тапсырады, мұғалім нәтижелерді және қате талдауды көреді.</p>
+    <p class="muted">Оқушы тест тапсырады. Мұғалім барлық оқушының нәтижесін және рефлексиясын жеке карточкамен көреді.</p>
+
     <div class="grid two" style="margin-top:12px;">
       <button class="rolebtn" onclick="setRole('student')">
         <div class="roleleft">
           <div class="icon">О</div>
           <div style="text-align:left">
-            <b>Оқушы кіру</b>
-            <div class="muted">Тест • қате есеп • қатемен жұмыс</div>
+            <b>Оқушы</b>
+            <div class="muted">Тест • Қате тізімі • Қатемен жұмыс • Рефлексия</div>
           </div>
         </div>
         <span class="muted">→</span>
       </button>
+
       <button class="rolebtn" onclick="setRole('teacher')">
         <div class="roleleft">
           <div class="icon">М</div>
           <div style="text-align:left">
-            <b>Мұғалім кіру</b>
-            <div class="muted">Нәтижелер • сұрыптау • аналитика</div>
+            <b>Мұғалім</b>
+            <div class="muted">Нәтиже • Карточкалар • ТОП қате сұрақтар</div>
           </div>
         </div>
         <span class="muted">→</span>
       </button>
     </div>
+
     <div class="note muted" style="margin-top:12px;">
-      Ескерту: бұл — демо-нұсқа. “Нәтижені мұғалімге жіберу” кейін Google Sheets/API арқылы қосылады.
+      Ескерту: бұл нұсқада “жіберу” DEMO ретінде браузерде сақталады (localStorage). Кейін Google Sheets/Firebase қосуға болады.
     </div>
   </div>
 
@@ -134,24 +255,11 @@
     <div class="grid two" style="margin-top:10px;">
       <div>
         <label>Логин</label>
-        <input id="login" placeholder="мыс: diana" />
+        <input id="login" placeholder="мыс: 9a01 немесе teacher" />
       </div>
       <div>
         <label>Пароль</label>
-        <input id="pass" type="password" placeholder="мыс: 1234" />
-      </div>
-      <div>
-        <label>Сынып</label>
-        <select id="cls">
-          <option value="9А">9А</option>
-          <option value="9Ә">9Ә</option>
-          <option value="9Б">9Б</option>
-          <option value="9В">9В</option>
-        </select>
-      </div>
-      <div>
-        <label>Аты-жөні</label>
-        <input id="fullname" placeholder="мыс: Диана Дәулет" />
+        <input id="pass" type="password" placeholder="мыс: A1b2C3" />
       </div>
     </div>
 
@@ -161,13 +269,16 @@
     </div>
 
     <div class="note small" style="margin-top:12px;">
-      Demo логиндер:<br/>
-      <b>Оқушы</b>: login <code>student</code>, пароль <code>1234</code><br/>
-      <b>Мұғалім</b>: login <code>teacher</code>, пароль <code>0000</code>
+      Мұғалім логині: <b>teacher</b> • пароль: <b>0000</b><br/>
+      Оқушылар логині/паролі тізіммен беріледі (кодтағы <code>STUDENTS</code> массиві).
+    </div>
+
+    <div class="note small" style="margin-top:12px;">
+      Егер тізімді өзгерту керек болса: <b>STUDENTS</b> бөліміне өз сыныбыңның оқушыларын енгізіп қоясың.
     </div>
   </div>
 
-  <!-- STUDENT APP -->
+  <!-- STUDENT -->
   <div class="card hide" id="studentCard">
     <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;">
       <div>
@@ -183,7 +294,7 @@
 
     <div id="testArea" style="margin-top:12px;"></div>
 
-    <div class="card" style="margin-top:12px;background:#fff;border:1px solid rgba(100,116,139,.15)">
+    <div class="card" style="margin-top:12px;background:#fff;border:1px solid rgba(37,99,235,.14)">
       <h3 class="title">Нәтиже</h3>
       <div style="margin-top:10px;">
         <div class="bar"><div id="barFill"></div></div>
@@ -191,19 +302,51 @@
       </div>
 
       <div class="grid two" style="margin-top:12px;">
-        <div class="note" id="wrongListBox">
+        <div class="note">
           <b>Қате сұрақтар тізімі</b>
           <ul class="list" id="wrongList"><li class="muted">Әзірге жоқ.</li></ul>
         </div>
         <div class="note">
-          <b>Ереже (шектеулі жад логикасы)</b>
+          <b>Шектеулі жад логикасы</b>
           <div class="small" id="ruleText"></div>
+        </div>
+      </div>
+
+      <!-- Reflection (cards style) -->
+      <div class="note" style="margin-top:12px;">
+        <b>Рефлексия (ерекше формат)</b>
+        <div class="small">Соңында мұғалімге “жеке карточкамен” көрінеді.</div>
+
+        <div style="margin-top:12px;">
+          <div class="small"><b>1) Өз сезімің:</b></div>
+          <div class="chiprow" id="moodChips">
+            <div class="chip" onclick="pickMood('😌 Жеңіл')">😌 Жеңіл</div>
+            <div class="chip" onclick="pickMood('🙂 Норм')">🙂 Норм</div>
+            <div class="chip" onclick="pickMood('😵 Қиын')">😵 Қиын</div>
+            <div class="chip" onclick="pickMood('😤 Түсінбедім')">😤 Түсінбедім</div>
+          </div>
+          <div class="small" id="moodView" style="margin-top:6px;">Таңдалмады</div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="small"><b>2) Қай жерде қиналдың?</b> (бірнешеуін таңда)</div>
+          <div style="margin-top:8px;display:grid;gap:8px;">
+            <label class="opt"><input type="checkbox" id="d_formula"> Формула</label>
+            <label class="opt"><input type="checkbox" id="d_units"> Өлшем бірлік</label>
+            <label class="opt"><input type="checkbox" id="d_circuit"> Схема/тізбек</label>
+            <label class="opt"><input type="checkbox" id="d_concept"> Ұғым/теория</label>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="small"><b>3) 1 қадам (келесіде):</b></div>
+          <input id="nextStep" placeholder="мыс: бірлікті тексерем, формуланы жазып шығам..." />
         </div>
       </div>
 
       <div class="btnrow" style="margin-top:12px;">
         <button class="btn green locked" id="btnRemed" onclick="openRemediation()">✅ Қатемен жұмыс</button>
-        <button class="btn locked" id="btnSend" onclick="sendToTeacher()">📩 Нәтижені мұғалімге жіберу</button>
+        <button class="btn locked" id="btnSend" onclick="sendToTeacher()">📩 Мұғалімге жіберу</button>
         <button class="btn ghost locked" id="btnRetry" onclick="resetAttempt()">Қайта тапсыру</button>
       </div>
       <div class="small" id="sendStatus" style="margin-top:8px;"></div>
@@ -215,7 +358,10 @@
     <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;">
       <div>
         <h2 class="title">Қатемен жұмыс</h2>
-        <p class="muted">Төменде тек сен қате кеткен сұрақтар шығады. Дұрыстап өтпейінше, қайта тапсыра алмайсың.</p>
+        <p class="muted">
+          Ереже: мұнда <b>дұрыс жауап та, түсіндірме де көрсетілмейді</b>.
+          Алдымен өзің түзетіп жауап бересің. <b>Соңында ғана</b> дұрыс жауап пен түсіндірме ашылады.
+        </p>
       </div>
       <button class="btn ghost" onclick="closeRemediation()">← Артқа</button>
     </div>
@@ -226,60 +372,86 @@
       <button class="btn green" onclick="finishRemediation()">Қатемен жұмысты аяқтау</button>
     </div>
     <div class="small" id="remedStatus" style="margin-top:8px;"></div>
+
+    <div class="card hide" id="remedRevealCard" style="margin-top:12px;">
+      <h3 class="title">Соңғы қорытынды (дұрыс жауаптар ашылды)</h3>
+      <div class="small">Бұл бөлім тек қатемен жұмыс толық өткен соң шығады.</div>
+      <div id="remedReveal" style="margin-top:12px;"></div>
+    </div>
   </div>
 
   <!-- TEACHER -->
   <div class="card hide" id="teacherCard">
     <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;">
       <div>
-        <h2 class="title">Мұғалім панелі (DEMO)</h2>
-        <p class="muted">Мұнда нәтиже жинау/аналитика болады. Қазір localStorage арқылы демо көрсетіледі.</p>
+        <h2 class="title">Мұғалім панелі (карточка)</h2>
+        <p class="muted">Әр оқушының нәтижесі + рефлексиясы жеке карточкамен көрінеді.</p>
       </div>
       <div class="btnrow">
         <button class="btn ghost" onclick="logout()">Шығу</button>
         <button class="btn" onclick="refreshTeacher()">Жаңарту</button>
+        <button class="btn gray" onclick="clearTeacherData()">Тазалау (DEMO)</button>
       </div>
     </div>
 
     <div class="grid two" style="margin-top:12px;">
       <div class="note">
-        <b>Оқушылар нәтижелері</b>
-        <div class="small">Төменде “жіберілген” нәтижелер ғана көрінеді.</div>
+        <b>Оқушылар карточкалары</b>
+        <div class="small">Тек “Жіберу” басылған нәтижелер.</div>
       </div>
       <div class="note">
-        <b>Ең көп қате кеткен сұрақтар (ТОП)</b>
-        <div class="small">Сұрыптау автомат түрде.</div>
+        <b>ТОП қате сұрақтар</b>
+        <div class="small">Нақты есептеледі (қай сұрақтан көп қате кеткені).</div>
       </div>
     </div>
 
-    <div class="grid two" style="margin-top:10px;">
+    <div class="grid two" style="margin-top:12px;">
       <div class="card" style="margin:0">
-        <table id="tblResults">
-          <thead><tr><th>Оқушы</th><th>Сынып</th><th>Балл</th><th>Қате</th><th>Уақыты</th></tr></thead>
-          <tbody><tr><td colspan="5" class="small">Әзірше дерек жоқ.</td></tr></tbody>
-        </table>
+        <div id="teacherCards" class="cards">
+          <div class="small">Әзірше дерек жоқ.</div>
+        </div>
       </div>
       <div class="card" style="margin:0">
-        <table id="tblTop">
-          <thead><tr><th>Сұрақ</th><th>Қате саны</th></tr></thead>
-          <tbody><tr><td colspan="2" class="small">Әзірше дерек жоқ.</td></tr></tbody>
-        </table>
+        <div id="topWrongBox">
+          <div class="small">Әзірше дерек жоқ.</div>
+        </div>
       </div>
     </div>
 
     <div class="note small" style="margin-top:12px;">
-      Кейін “Нәтижені мұғалімге жіберу” → Google Sheets / Firebase арқылы болады.
-      Қазір тек демонстрация.
+      Кейін мұны Google Sheets/Firebase-пен жасасаң — дерек барлық құрылғыда сақталады.
     </div>
   </div>
 
 </main>
 
 <script>
-  // ---------- DATA (10 сұрақ, A/B/C аралас) ----------
+  // =========================
+  // 1) ОҚУШЫ ЛОГИН/ПАРОЛЬ ТІЗІМІ
+  // =========================
+  // Өз сыныбыңның нақты логин/паролін осы жерден ауыстырасың:
+  const STUDENTS = [
+    {login:"9a01", pass:"A1b2C3", fullname:"Айдана Нұрлан", cls:"9А"},
+    {login:"9a02", pass:"Q7w8E9", fullname:"Данияр Талғат", cls:"9А"},
+    {login:"9a03", pass:"Z2x3C4", fullname:"Аружан Еркебұлан", cls:"9А"},
+    {login:"9a04", pass:"M5n6B7", fullname:"Нұрсұлтан Бек", cls:"9А"},
+    {login:"9a05", pass:"K9l8J7", fullname:"Мадина Әсет", cls:"9А"},
+    {login:"9a06", pass:"P3o2I1", fullname:"Әлихан Серік", cls:"9А"},
+    {login:"9a07", pass:"T4y5U6", fullname:"Айлин Дәулет", cls:"9А"},
+    {login:"9a08", pass:"R1t2Y3", fullname:"Диас Нұржан", cls:"9А"},
+    {login:"9a09", pass:"V7b8N9", fullname:"Сымбат Қайрат", cls:"9А"},
+    {login:"9a10", pass:"S6d5F4", fullname:"Еркеназ Жанат", cls:"9А"},
+  ];
+
+  // Мұғалім аккаунты:
+  const TEACHER = { login:"teacher", pass:"0000", role:"teacher" };
+
+  // =========================
+  // 2) 10 СҰРАҚ (A/B/C КӨРСЕТІЛМЕЙДІ)
+  // =========================
   const QUESTIONS = [
     {
-      id: 1, level: "A",
+      id: 1,
       q: "Электр тогы дегеніміз не?",
       options: [
         "Зарядталған бөлшектердің реттелген қозғалысы",
@@ -291,50 +463,50 @@
       explain: "Электр тогы — зарядталған бөлшектердің (электрон/ион) реттелген қозғалысы."
     },
     {
-      id: 2, level: "A",
+      id: 2,
       q: "Кернеудің өлшем бірлігі қандай?",
       options: ["Ампер (A)", "Вольт (V)", "Ом (Ω)", "Кулон (C)"],
       correct: 1,
       explain: "Кернеудің SI өлшем бірлігі — вольт (V)."
     },
     {
-      id: 3, level: "B",
+      id: 3,
       q: "Ом заңы (тізбек бөлігі үшін) дұрыс жазылған формула:",
       options: ["I = U/R", "R = I/U", "U = I·t", "P = U·t"],
       correct: 0,
-      explain: "Ом заңы: I = U/R (ток күші кернеуге тура, кедергіге кері пропорционал)."
+      explain: "Ом заңы: I = U/R."
     },
     {
-      id: 4, level: "B",
+      id: 4,
       q: "Екі кедергі тізбектей қосылса, толық кедергі:",
       options: ["R = R1·R2/(R1+R2)", "R = R1 + R2", "R = R1 - R2", "R = (R1+R2)/2"],
       correct: 1,
-      explain: "Тізбектей қосылуда кедергілер қосылады: R = R1 + R2."
+      explain: "Тізбектей қосылуда: R = R1 + R2."
     },
     {
-      id: 5, level: "B",
+      id: 5,
       q: "Ток күші 2 A, кедергі 5 Ω. Кернеу U = ?",
       options: ["2.5 V", "7 V", "10 V", "20 V"],
       correct: 2,
       explain: "U = I·R = 2·5 = 10 В."
     },
     {
-      id: 6, level: "C",
+      id: 6,
       q: "Ток күші 3 A, кернеу 12 V болса, қуат P = ?",
       options: ["4 W", "9 W", "15 W", "36 W"],
       correct: 3,
       explain: "P = U·I = 12·3 = 36 Вт."
     },
     {
-      id: 7, level: "C",
+      id: 7,
       q: "Магнит өрісіндегі ток өткізгішке әсер ететін күш қалай аталады?",
       options: ["Архимед күші", "Ампер күші", "Кулон күші", "Үйкеліс күші"],
       correct: 1,
       explain: "Магнит өрісіндегі ток өткізгішке әсер ететін күш — Ампер күші."
     },
     {
-      id: 8, level: "B",
-      q: "Электромагниттік индукция құбылысы: ",
+      id: 8,
+      q: "Электромагниттік индукция құбылысы:",
       options: [
         "Зарядтардың тартылуы",
         "Магнит өрісі тұрақты болса, ток пайда болуы",
@@ -342,22 +514,22 @@
         "Тізбектегі кедергінің артуы"
       ],
       correct: 2,
-      explain: "Индукция: магнит ағыны өзгерсе, индукциялық ЭҚК пайда болады (Фарадей заңы)."
+      explain: "Магнит ағыны өзгерсе, индукциялық ЭҚК пайда болады (Фарадей заңы)."
     },
     {
-      id: 9, level: "C",
-      q: "Тұрақты магниттің өріс сызықтары қай бағытта шығады?",
+      id: 9,
+      q: "Тұрақты магниттің сыртқы өріс сызықтары қай бағытта?",
       options: [
         "Оңтүстік полюстен солтүстікке",
-        "Солтүстік полюстен оңтүстікке (сыртқы кеңістікте)",
+        "Солтүстік полюстен оңтүстікке",
         "Екі бағытта да бірдей",
         "Өріс сызықтары болмайды"
       ],
       correct: 1,
-      explain: "Сыртқы кеңістікте магнит өріс сызықтары N (солтүстік) → S (оңтүстік) бағытталған."
+      explain: "Сыртқы кеңістікте N → S бағытталған."
     },
     {
-      id: 10, level: "A",
+      id: 10,
       q: "Электр зарядтың өлшем бірлігі қандай?",
       options: ["Ньютон (N)", "Джоуль (J)", "Кулон (C)", "Ватт (W)"],
       correct: 2,
@@ -365,27 +537,26 @@
     }
   ];
 
-  // ---------- SIMPLE AUTH (DEMO) ----------
-  const DEMO_USERS = {
-    student: { pass: "1234", role: "student" },
-    teacher: { pass: "0000", role: "teacher" }
-  };
-
-  // ---------- STATE ----------
+  // =========================
+  // STATE + STORAGE KEYS
+  // =========================
   let ROLE = null;
-  let currentUser = null; // {login, fullname, cls}
+  let currentUser = null; // {login, fullname, cls, role}
   let answers = {};       // qid -> chosen index
   let submitted = false;
   let wrongIds = [];
   let remedDone = false;
 
-  // storage keys
+  // remediation picks: qid -> chosen
+  let remedAnswers = {};
+  let REF_MOOD = "";
+
   const K = {
     attempt: (login)=>`pm_attempt_${login}`,
-    sent: "pm_sent_results"
+    sent: "pm_sent_results_v2"
   };
 
-  // ---------- UI helpers ----------
+  // UI helpers
   const $ = (id)=>document.getElementById(id);
   const show = (id)=>$(id).classList.remove("hide");
   const hide = (id)=>$(id).classList.add("hide");
@@ -397,68 +568,63 @@
     hide("roleCard"); show("loginCard");
     $("loginTitle").textContent = (r==="student") ? "Оқушы кіру" : "Мұғалім кіру";
     $("loginHint").textContent = (r==="student")
-      ? "Оқушы логин/пароль, сынып және аты-жөніңді енгіз."
-      : "Мұғалім логин/пароль арқылы кіреді.";
+      ? "Оқушы логин/пароль тізім бойынша беріледі."
+      : "Мұғалім teacher/0000 арқылы кіреді.";
+    // reset fields
+    $("login").value=""; $("pass").value="";
   }
   function backToRole(){
     ROLE=null;
     hide("loginCard"); show("roleCard");
   }
+
   function fillDemo(){
     if(ROLE==="student"){
-      $("login").value="student";
-      $("pass").value="1234";
-      $("cls").value="9А";
-      $("fullname").value="Диана Дәулет";
+      $("login").value = STUDENTS[0].login;
+      $("pass").value = STUDENTS[0].pass;
     }else{
-      $("login").value="teacher";
-      $("pass").value="0000";
-      $("cls").value="9А";
-      $("fullname").value="Мұғалім";
+      $("login").value = TEACHER.login;
+      $("pass").value = TEACHER.pass;
     }
   }
 
   function doLogin(){
     const login = $("login").value.trim();
     const pass = $("pass").value.trim();
-    const cls = $("cls").value;
-    const fullname = $("fullname").value.trim();
-
     if(!login || !pass){ alert("Логин және пароль енгіз."); return; }
-    if(ROLE==="student" && !fullname){ alert("Аты-жөніңді енгіз."); return; }
 
-    // demo auth check
-    const u = DEMO_USERS[login];
-    if(!u || u.pass!==pass){
-      alert("Логин немесе пароль қате (demo).");
-      return;
-    }
-    if(u.role!==ROLE){
-      alert("Рөлі сәйкес емес. Оқушыға student, мұғалімге teacher кір.");
-      return;
+    if(ROLE==="teacher"){
+      if(login===TEACHER.login && pass===TEACHER.pass){
+        currentUser = {login, fullname:"Мұғалім", cls:"—", role:"teacher"};
+        hide("loginCard"); initTeacher(); return;
+      }
+      alert("Мұғалім логині/паролі қате."); return;
     }
 
-    currentUser = { login, fullname: fullname || "Мұғалім", cls };
-    hide("loginCard");
-    if(ROLE==="student"){ initStudent(); }
-    else { initTeacher(); }
+    // student: find in list
+    const st = STUDENTS.find(s=>s.login===login && s.pass===pass);
+    if(!st){ alert("Оқушы логині/паролі қате (тізім бойынша тексер)."); return; }
+
+    currentUser = {login: st.login, fullname: st.fullname, cls: st.cls, role:"student"};
+    hide("loginCard"); initStudent();
   }
 
   function logout(){
     ROLE=null; currentUser=null;
-    answers={}; submitted=false; wrongIds=[]; remedDone=false;
-    hide("studentCard"); hide("teacherCard"); hide("remedCard");
+    answers={}; submitted=false; wrongIds=[]; remedDone=false; remedAnswers={}; REF_MOOD="";
+    hide("studentCard"); hide("teacherCard"); hide("remedCard"); hide("remedRevealCard");
     show("roleCard"); hide("loginCard");
     $("sendStatus").textContent="";
     $("remedStatus").textContent="";
   }
 
-  // ---------- STUDENT FLOW ----------
+  // =========================
+  // STUDENT FLOW
+  // =========================
   function initStudent(){
     show("studentCard");
     $("studentMeta").textContent = `${currentUser.fullname} • ${currentUser.cls} • login: ${currentUser.login}`;
 
-    // load attempt
     const saved = localStorage.getItem(K.attempt(currentUser.login));
     if(saved){
       const st = JSON.parse(saved);
@@ -466,55 +632,63 @@
       submitted = !!st.submitted;
       wrongIds = st.wrongIds || [];
       remedDone = !!st.remedDone;
+      remedAnswers = st.remedAnswers || {};
+      REF_MOOD = st.refMood || "";
+      // restore reflection fields
+      setTimeout(()=>restoreReflection(st.reflection || {}), 0);
     }else{
-      answers={}; submitted=false; wrongIds=[]; remedDone=false;
+      answers={}; submitted=false; wrongIds=[]; remedDone=false; remedAnswers={}; REF_MOOD="";
+      setTimeout(()=>restoreReflection({}), 0);
     }
 
     renderStudentState();
     renderTest();
     renderResults();
+    renderMoodUI();
   }
 
-  function saveAttempt(){
+  function saveAttempt(extraReflection){
     if(!currentUser) return;
+    const reflection = extraReflection || readReflection();
     localStorage.setItem(K.attempt(currentUser.login), JSON.stringify({
-      answers, submitted, wrongIds, remedDone
+      answers, submitted, wrongIds, remedDone, remedAnswers,
+      refMood: REF_MOOD, reflection
     }));
   }
 
   function renderStudentState(){
     if(!submitted){
-      $("stateNote").innerHTML = `<b>1-қадам:</b> Тестті тапсыр. Әр жауаптан кейін түсіндірме көресің.`;
+      $("stateNote").innerHTML = `<b>1-қадам:</b> Тестті тапсыр. Жауап берген сайын “Дұрыс/Қате” және түсіндірме көрсетіледі.`;
       $("ruleText").innerHTML = `
         <ul class="list">
-          <li>Жауап берген соң дұрыс/бұрыс және түсіндірме шығады.</li>
-          <li>Тестті толық тапсырғаннан кейін қате сұрақтар тізімі жасалады.</li>
-          <li>Қате болса — <b>“Қатемен жұмыс” міндетті</b>.</li>
+          <li>Тест аяқталғанда қате сұрақтар тізімі жасалады.</li>
+          <li>Қате болса → <b>қатемен жұмыс міндетті</b>.</li>
+          <li>Қатемен жұмыста: <b>дұрыс жауап соңында ғана</b> ашылады.</li>
         </ul>`;
       lock("btnRemed"); lock("btnSend"); lock("btnRetry");
       return;
     }
     if(submitted && wrongIds.length===0){
-      $("stateNote").innerHTML = `<b>Жарайсың!</b> Қате жоқ. Нәтижені мұғалімге жібере аласың.`;
+      $("stateNote").innerHTML = `<b>Жарайсың!</b> Қате жоқ. Рефлексияны толтырып, мұғалімге жібере аласың.`;
       unlock("btnSend"); unlock("btnRetry"); lock("btnRemed");
-      $("ruleText").innerHTML = `<ul class="list"><li>Қате жоқ → “Қатемен жұмыс” қажет емес.</li></ul>`;
+      $("ruleText").innerHTML = `<ul class="list"><li>Қате жоқ → қатемен жұмыс қажет емес.</li></ul>`;
       return;
     }
     if(submitted && wrongIds.length>0 && !remedDone){
-      $("stateNote").innerHTML = `<b>2-қадам:</b> Қате сұрақтар бар. <b>Қатемен жұмыс</b> жасамайынша нәтиже жіберілмейді және қайта тапсыра алмайсың.`;
+      $("stateNote").innerHTML = `<b>2-қадам:</b> Қате бар. <b>Қатемен жұмыс</b> өтпейінше жіберу/қайта тапсыру ашылмайды.`;
       unlock("btnRemed"); lock("btnSend"); lock("btnRetry");
       $("ruleText").innerHTML = `
         <ul class="list">
-          <li>Қате сұрақтар “жадта” сақталады (қате тізімі).</li>
-          <li>Қатемен жұмыс: тек қате сұрақтар қайталанады + түсіндірме.</li>
-          <li>Қатемен жұмыс аяқталса ғана жіберу/қайта тапсыру ашылады.</li>
+          <li>Қате сұрақтар “жадта” сақталады.</li>
+          <li>Қатемен жұмыс: алдымен өзің түзетесің, соңында ғана дұрыс жауап/түсіндірме ашылады.</li>
+          <li>Аяқталса ғана жіберу/қайта тапсыру ашылады.</li>
         </ul>`;
       return;
     }
     if(submitted && wrongIds.length>0 && remedDone){
-      $("stateNote").innerHTML = `<b>✅ Қатемен жұмыс аяқталды.</b> Енді нәтижені мұғалімге жібере аласың немесе қайта тапсыра аласың.`;
+      $("stateNote").innerHTML = `<b class="success">✅ Қатемен жұмыс аяқталды.</b> Енді рефлексияны толтырып, мұғалімге жібере аласың.`;
       lock("btnRemed"); unlock("btnSend"); unlock("btnRetry");
-      $("ruleText").innerHTML = `<ul class="list"><li>Қателер түзетілді → жібере аласың.</li></ul>`;
+      $("ruleText").innerHTML = `<ul class="list"><li>Қателер түзетілді → жіберуге болады.</li></ul>`;
       return;
     }
   }
@@ -524,11 +698,11 @@
     host.innerHTML = `
       <div class="note">
         <b>Тест: Электр және Магнетизм (10 сұрақ)</b>
-        <div class="small">A/B/C деңгейлері аралас. Жауап беріп болған соң “Тестті аяқтау” батырмасын бас.</div>
+        <div class="small">Төмендегі сұрақтарға жауап бер. Соңында “Тестті аяқтау” бас.</div>
       </div>
       <div id="qList"></div>
       <div class="btnrow" style="margin-top:12px;">
-        <button class="btn" onclick="submitTest()">Тестті аяқтау</button>
+        <button class="btn" id="finishBtn" onclick="submitTest()">Тестті аяқтау</button>
       </div>
     `;
     const qList = document.getElementById("qList");
@@ -547,14 +721,12 @@
           <label class="opt">
             <input type="radio" name="q_${qq.id}" ${checked}
               onchange="pick(${qq.id}, ${idx})" ${submitted ? "disabled" : ""}/>
-            <div>
-              <div><b>${String.fromCharCode(65+idx)})</b> ${opt}</div>
-            </div>
+            <div><b>${String.fromCharCode(65+idx)})</b> ${opt}</div>
           </label>`;
       }).join("");
 
       const explainHtml = isAnswered ? `
-        <div class="note ${isCorrect ? "ok" : "bad"}" style="margin-top:10px;">
+        <div class="note ${isCorrect ? "ok" : "bad"}" style="margin-top:10px;border-style:solid;border-width:1px;">
           <b>${statusText}</b>
           <div class="small" style="margin-top:6px;"><b>Түсіндірме:</b> ${qq.explain}</div>
           ${!isCorrect ? `<div class="small" style="margin-top:6px;"><b>Дұрыс жауап:</b> ${String.fromCharCode(65+qq.correct)}) ${qq.options[qq.correct]}</div>` : ""}
@@ -565,10 +737,7 @@
       el.className = "q " + statusClass;
       el.innerHTML = `
         <div class="qhead">
-          <div>
-            <b>${qq.id}. ${qq.q}</b>
-            <div class="small">Деңгей: <span class="badge">${qq.level}</span></div>
-          </div>
+          <div><b>${qq.id}. ${qq.q}</b></div>
           <span class="badge">${statusText}</span>
         </div>
         <div class="ans">${optsHtml}</div>
@@ -577,23 +746,21 @@
       qList.appendChild(el);
     });
 
-    // disable finish button if already submitted
     if(submitted){
-      host.querySelector("button.btn").classList.add("locked");
-      host.querySelector("button.btn").disabled = true;
-      host.querySelector("button.btn").textContent = "Тест аяқталған";
+      const b = document.getElementById("finishBtn");
+      b.classList.add("locked");
+      b.disabled = true;
+      b.textContent = "Тест аяқталған";
     }
   }
 
   function pick(qid, idx){
     answers[qid] = idx;
     saveAttempt();
-    // rerender only to show explanation immediately
-    renderTest();
+    renderTest(); // show explanation immediately
   }
 
   function submitTest(){
-    // check all answered
     const missing = QUESTIONS.filter(q=>answers[q.id]===undefined);
     if(missing.length){
       alert("Барлық сұраққа жауап бер: " + missing.map(m=>m.id).join(", "));
@@ -601,7 +768,8 @@
     }
     submitted = true;
     wrongIds = QUESTIONS.filter(q=>answers[q.id]!==q.correct).map(q=>q.id);
-    remedDone = (wrongIds.length===0) ? true : false; // if no wrong -> treated as done
+    remedDone = (wrongIds.length===0) ? true : false;
+    remedAnswers = {}; // reset remed answers on new submit
     saveAttempt();
     renderStudentState();
     renderResults();
@@ -612,8 +780,7 @@
   function renderResults(){
     const total = QUESTIONS.length;
     const correct = QUESTIONS.filter(q=>answers[q.id]===q.correct).length;
-    const score = `${correct}/${total}`;
-    $("scoreLine").textContent = submitted ? `Нәтиже: ${score}` : "Әлі тапсырылған жоқ.";
+    $("scoreLine").textContent = submitted ? `Нәтиже: ${correct}/${total}` : "Әлі тапсырылған жоқ.";
     $("barFill").style.width = submitted ? `${Math.round((correct/total)*100)}%` : "0%";
 
     const wrongList = $("wrongList");
@@ -628,19 +795,70 @@
         const chosen = answers[id];
         wrongList.insertAdjacentHTML("beforeend",
           `<li><b>${id}.</b> ${q.q}<br/>
-            <span class="small">Сенің жауабың: ${String.fromCharCode(65+chosen)} | Дұрысы: ${String.fromCharCode(65+q.correct)}</span>
+            <span class="small">Сен: ${String.fromCharCode(65+chosen)} • Дұрысы: ${String.fromCharCode(65+q.correct)}</span>
           </li>`);
       });
     }
-
-    // unlock/lock buttons according to state
     renderStudentState();
   }
 
+  // =========================
+  // REFLECTION (chips + input)
+  // =========================
+  function renderMoodUI(){
+    // activate chip if restored
+    const chips = Array.from(document.querySelectorAll("#moodChips .chip"));
+    chips.forEach(c=>{
+      c.classList.toggle("active", REF_MOOD && c.textContent.trim()===REF_MOOD);
+    });
+    $("moodView").textContent = REF_MOOD ? ("Таңдалды: " + REF_MOOD) : "Таңдалмады";
+  }
+
+  function pickMood(m){
+    REF_MOOD = m;
+    const chips = Array.from(document.querySelectorAll("#moodChips .chip"));
+    chips.forEach(c=>c.classList.toggle("active", c.textContent.trim()===m));
+    $("moodView").textContent = "Таңдалды: " + m;
+    saveAttempt();
+  }
+
+  function readReflection(){
+    const dif = [];
+    if($("d_formula")?.checked) dif.push("Формула");
+    if($("d_units")?.checked) dif.push("Өлшем");
+    if($("d_circuit")?.checked) dif.push("Схема");
+    if($("d_concept")?.checked) dif.push("Теория");
+
+    return {
+      mood: REF_MOOD || "",
+      difficulties: dif,
+      next_step: $("nextStep")?.value.trim() || ""
+    };
+  }
+
+  function restoreReflection(ref){
+    // mood
+    REF_MOOD = ref.mood || REF_MOOD || "";
+    // checkboxes
+    const dif = ref.difficulties || [];
+    if($("d_formula")) $("d_formula").checked = dif.includes("Формула");
+    if($("d_units")) $("d_units").checked = dif.includes("Өлшем");
+    if($("d_circuit")) $("d_circuit").checked = dif.includes("Схема");
+    if($("d_concept")) $("d_concept").checked = dif.includes("Теория");
+    if($("nextStep")) $("nextStep").value = ref.next_step || "";
+    renderMoodUI();
+  }
+
+  // =========================
+  // REMEDIATION (NO correct/explain until end)
+  // =========================
   function openRemediation(){
     if(!submitted || wrongIds.length===0) return;
     hide("studentCard"); show("remedCard");
+    hide("remedRevealCard");
+    $("remedStatus").textContent="";
     renderRemed();
+    saveAttempt();
   }
 
   function closeRemediation(){
@@ -651,152 +869,250 @@
   function renderRemed(){
     const host = $("remedArea");
     host.innerHTML = "";
-    if(wrongIds.length===0){
-      host.innerHTML = `<div class="note ok"><b>Қате жоқ.</b></div>`;
-      return;
-    }
     wrongIds.forEach((id)=>{
       const q = QUESTIONS.find(x=>x.id===id);
+      const chosen = remedAnswers[id];
       const el = document.createElement("div");
       el.className = "q";
       el.innerHTML = `
         <div class="qhead">
-          <div><b>${q.id}. ${q.q}</b><div class="small">Деңгей: <span class="badge">${q.level}</span></div></div>
+          <div><b>${q.id}. ${q.q}</b></div>
           <span class="badge">Қатемен жұмыс</span>
-        </div>
-        <div class="note" style="margin-top:10px;">
-          <b>Түсіндірме:</b> <span class="small">${q.explain}</span><br/>
-          <span class="small"><b>Дұрыс жауап:</b> ${String.fromCharCode(65+q.correct)}) ${q.options[q.correct]}</span>
         </div>
         <div class="ans" style="margin-top:10px;">
           ${q.options.map((opt, idx)=>`
             <label class="opt">
-              <input type="radio" name="r_${q.id}" onchange="remedPick(${q.id}, ${idx})"/>
+              <input type="radio" name="r_${q.id}" ${chosen===idx?"checked":""}
+                onchange="remedPick(${q.id}, ${idx})"/>
               <div><b>${String.fromCharCode(65+idx)})</b> ${opt}</div>
             </label>`).join("")}
         </div>
-        <div class="small" id="remed_msg_${q.id}" style="margin-top:8px;"></div>
+        <div class="small" id="rmsg_${q.id}" style="margin-top:8px;"></div>
       `;
       host.appendChild(el);
+
+      // show only "chosen" status, no correct reveal
+      if(chosen !== undefined){
+        const msg = document.getElementById(`rmsg_${q.id}`);
+        msg.innerHTML = `<span class="small">Жауап белгіленді ✅</span>`;
+      }
     });
   }
 
   function remedPick(qid, idx){
-    const q = QUESTIONS.find(x=>x.id===qid);
-    const msg = document.getElementById(`remed_msg_${qid}`);
-    if(idx===q.correct){
-      msg.innerHTML = `<span style="color:var(--green);font-weight:800">Дұрыс ✅</span>`;
-      msg.dataset.ok = "1";
-    }else{
-      msg.innerHTML = `<span style="color:var(--red);font-weight:800">Қате ❌</span> <span class="small">Қайта ойлан.</span>`;
-      msg.dataset.ok = "0";
-    }
+    remedAnswers[qid] = idx;
+    const msg = document.getElementById(`rmsg_${qid}`);
+    if(msg) msg.innerHTML = `<span class="small">Жауап белгіленді ✅</span>`;
+    saveAttempt();
   }
 
   function finishRemediation(){
-    // check all wrong questions corrected
-    let allOk = true;
-    wrongIds.forEach((id)=>{
-      const msg = document.getElementById(`remed_msg_${id}`);
-      if(!msg || msg.dataset.ok!=="1") allOk=false;
-    });
-    if(!allOk){
-      $("remedStatus").innerHTML = `<span style="color:var(--red);font-weight:800">Барлық қате сұрақты дұрыстап өт.</span>`;
+    // must answer all wrong questions
+    const missing = wrongIds.filter(id => remedAnswers[id] === undefined);
+    if(missing.length){
+      $("remedStatus").innerHTML = `<span class="danger">Алдымен осы сұрақтарға жауап бер:</span> ${missing.join(", ")}`;
       return;
     }
+
+    // check correctness
+    const incorrect = wrongIds.filter(id=>{
+      const q = QUESTIONS.find(x=>x.id===id);
+      return remedAnswers[id] !== q.correct;
+    });
+
+    if(incorrect.length){
+      $("remedStatus").innerHTML = `<span class="danger">Әлі қате бар.</span> Қайта қарап түзет: ${incorrect.join(", ")}`;
+      // still no reveal of correct answers here
+      return;
+    }
+
     remedDone = true;
     saveAttempt();
-    $("remedStatus").innerHTML = `<span style="color:var(--green);font-weight:800">Қатемен жұмыс аяқталды ✅</span>`;
-    // go back
-    setTimeout(()=>{ closeRemediation(); renderStudentState(); renderResults(); }, 600);
+    $("remedStatus").innerHTML = `<span class="success">✅ Қатемен жұмыс толық өтті!</span> Енді дұрыс жауаптар мен түсіндірме ашылды.`;
+
+    // Reveal correct answers ONLY NOW
+    const reveal = $("remedReveal");
+    reveal.innerHTML = "";
+    wrongIds.forEach(id=>{
+      const q = QUESTIONS.find(x=>x.id===id);
+      const your = remedAnswers[id];
+      reveal.insertAdjacentHTML("beforeend", `
+        <div class="q ok">
+          <div class="qhead">
+            <div><b>${q.id}. ${q.q}</b></div>
+            <span class="badge">Түзетілді ✅</span>
+          </div>
+          <div class="small" style="margin-top:8px;">
+            Сенің соңғы жауабың: <b>${String.fromCharCode(65+your)})</b>
+          </div>
+          <div class="note ok" style="margin-top:10px;border-style:solid;border-width:1px;">
+            <div class="small"><b>Дұрыс жауап:</b> ${String.fromCharCode(65+q.correct)}) ${q.options[q.correct]}</div>
+            <div class="small" style="margin-top:6px;"><b>Түсіндірме:</b> ${q.explain}</div>
+          </div>
+        </div>
+      `);
+    });
+    show("remedRevealCard");
+
+    // back after a moment
+    setTimeout(()=>{
+      closeRemediation();
+      renderStudentState();
+      renderResults();
+    }, 800);
   }
 
   function resetAttempt(){
-    if(!submitted) return;
     answers = {};
     submitted = false;
     wrongIds = [];
     remedDone = false;
+    remedAnswers = {};
     saveAttempt();
     $("sendStatus").textContent="";
+    hide("remedRevealCard");
     renderStudentState();
     renderTest();
     renderResults();
   }
 
-  // “Send to teacher” demo: store to localStorage list
+  // =========================
+  // SEND TO TEACHER (DEMO localStorage)
+  // =========================
   function sendToTeacher(){
     if(!submitted){ alert("Алдымен тестті тапсыр."); return; }
     if(wrongIds.length>0 && !remedDone){ alert("Қатемен жұмыс міндетті."); return; }
 
+    const reflection = readReflection();
+    // minimal reflection validation (optional)
+    if(!reflection.mood){
+      alert("Рефлексия: сезіміңді таңда.");
+      return;
+    }
+
     const total = QUESTIONS.length;
     const correct = QUESTIONS.filter(q=>answers[q.id]===q.correct).length;
+    const wrong = total - correct;
+
+    // store per-question wrong list for TOP analytics
+    const wrongQ = QUESTIONS.filter(q=>answers[q.id]!==q.correct).map(q=>q.id);
 
     const payload = {
       fullname: currentUser.fullname,
       cls: currentUser.cls,
       login: currentUser.login,
       score: `${correct}/${total}`,
-      wrongCount: total - correct,
+      correctCount: correct,
+      wrongCount: wrong,
+      wrongQ,
+      reflection,
       time: new Date().toLocaleString()
     };
 
     const arr = JSON.parse(localStorage.getItem(K.sent) || "[]");
-    arr.push(payload);
-    localStorage.setItem(K.sent, JSON.stringify(arr));
+    // replace last record for same student (keep only latest)
+    const filtered = arr.filter(x=>x.login !== payload.login);
+    filtered.push(payload);
+    localStorage.setItem(K.sent, JSON.stringify(filtered));
 
-    $("sendStatus").innerHTML = `<span style="color:var(--green);font-weight:800">Жіберілді ✅</span> <span class="small">(DEMO)</span>`;
+    $("sendStatus").innerHTML = `<span class="success">Жіберілді ✅</span> <span class="small">(DEMO)</span>`;
   }
 
-  // ---------- TEACHER ----------
+  // =========================
+  // TEACHER PANEL (cards + top wrong)
+  // =========================
   function initTeacher(){
     show("teacherCard");
     refreshTeacher();
   }
+
   function refreshTeacher(){
     const arr = JSON.parse(localStorage.getItem(K.sent) || "[]");
-    // results table
-    const tbody = $("tblResults").querySelector("tbody");
-    tbody.innerHTML = "";
+
+    // CARDS
+    const host = $("teacherCards");
+    host.innerHTML = "";
     if(arr.length===0){
-      tbody.innerHTML = `<tr><td colspan="5" class="small">Әзірше дерек жоқ.</td></tr>`;
+      host.innerHTML = `<div class="small">Әзірше дерек жоқ.</div>`;
     }else{
+      // sort by time not reliable in locale, but keep insertion order
       arr.slice().reverse().forEach(r=>{
-        tbody.insertAdjacentHTML("beforeend",
-          `<tr>
-            <td><b>${escapeHtml(r.fullname)}</b><div class="small">@${escapeHtml(r.login)}</div></td>
-            <td>${escapeHtml(r.cls)}</td>
-            <td>${escapeHtml(r.score)}</td>
-            <td>${r.wrongCount}</td>
-            <td class="small">${escapeHtml(r.time)}</td>
-          </tr>`);
+        const ref = r.reflection || {};
+        const mood = ref.mood || "—";
+        const dif = (ref.difficulties || []).join(", ") || "—";
+        const step = ref.next_step || "—";
+
+        host.insertAdjacentHTML("beforeend", `
+          <div class="kcard">
+            <div class="khead">
+              <div>
+                <div class="kname">${escapeHtml(r.fullname)}</div>
+                <div class="kmeta">${escapeHtml(r.cls)} • @${escapeHtml(r.login)}</div>
+              </div>
+              <div class="tag ${r.wrongCount===0 ? "ok":"bad"}">${escapeHtml(r.score)}</div>
+            </div>
+
+            <div class="kline"></div>
+
+            <div class="krow">
+              <span class="tag ${r.wrongCount===0 ? "ok":"bad"}">Қате: ${r.wrongCount}</span>
+              <span class="tag">Сезім: ${escapeHtml(mood)}</span>
+            </div>
+
+            <div class="kmeta" style="margin-top:10px;"><b>Қиналды:</b> ${escapeHtml(dif)}</div>
+            <div class="kmeta" style="margin-top:6px;"><b>Келесі қадам:</b> ${escapeHtml(step)}</div>
+
+            <div class="kmeta" style="margin-top:8px;"><b>Қате сұрақтар:</b> ${r.wrongQ?.length ? r.wrongQ.join(", ") : "жоқ"}</div>
+
+            <div class="kmeta" style="margin-top:8px;">${escapeHtml(r.time)}</div>
+          </div>
+        `);
       });
     }
 
-    // top wrong questions (simple demo: aggregate wrongCount only, not per-question)
-    // Better: count per-question, but we didn't store per-question here. We'll simulate:
-    const topTbody = $("tblTop").querySelector("tbody");
-    topTbody.innerHTML = "";
+    // TOP WRONG QUESTIONS
+    const topBox = $("topWrongBox");
+    topBox.innerHTML = "";
     if(arr.length===0){
-      topTbody.innerHTML = `<tr><td colspan="2" class="small">Әзірше дерек жоқ.</td></tr>`;
-    }else{
-      // DEMO: show fixed "likely" top list based on typical mistakes:
-      const demoTop = [
-        {q:"№8 Индукция (Фарадей заңы)", n: Math.max(1, Math.floor(arr.length*0.6))},
-        {q:"№6 Қуат P = U·I", n: Math.max(1, Math.floor(arr.length*0.5))},
-        {q:"№7 Ампер күші", n: Math.max(1, Math.floor(arr.length*0.4))}
-      ];
-      demoTop.forEach(x=>{
-        topTbody.insertAdjacentHTML("beforeend",
-          `<tr><td>${escapeHtml(x.q)}</td><td>${x.n}</td></tr>`);
-      });
-      topTbody.insertAdjacentHTML("beforeend",
-        `<tr><td colspan="2" class="small">Ескерту: Бұл ТОП — демо. Кейін нақты сұрақтық аналитика қосамыз.</td></tr>`);
+      topBox.innerHTML = `<div class="small">Әзірше дерек жоқ.</div>`;
+      return;
     }
+
+    const countMap = new Map(); // qid -> count
+    arr.forEach(r=>{
+      (r.wrongQ || []).forEach(id=>{
+        countMap.set(id, (countMap.get(id) || 0) + 1);
+      });
+    });
+
+    const sorted = Array.from(countMap.entries()).sort((a,b)=>b[1]-a[1]).slice(0,5);
+    if(sorted.length===0){
+      topBox.innerHTML = `<div class="small">Қате сұрақ жоқ (бәрі дұрыс).</div>`;
+      return;
+    }
+
+    topBox.insertAdjacentHTML("beforeend", `<div class="note"><b>ТОП-5 қате сұрақ</b><div class="small">Қай сұрақтан көп қате кеткені.</div></div>`);
+    sorted.forEach(([qid, cnt])=>{
+      const q = QUESTIONS.find(x=>x.id===qid);
+      topBox.insertAdjacentHTML("beforeend", `
+        <div class="kcard" style="box-shadow:none;">
+          <div class="khead">
+            <div><b>#${qid}</b> ${escapeHtml(q?.q || "")}</div>
+            <span class="tag bad">Қате саны: ${cnt}</span>
+          </div>
+        </div>
+      `);
+    });
+  }
+
+  function clearTeacherData(){
+    if(!confirm("DEMO деректерді өшірейін бе?")) return;
+    localStorage.removeItem(K.sent);
+    refreshTeacher();
   }
 
   function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    return String(s ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   }
 </script>
 </body>
